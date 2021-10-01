@@ -23,4 +23,4 @@ PR are supported! Before creating a pull request, read [CONTRIBUTION_GUIDE.md](h
 
 ## Лицензия
 Copyright © 2021 [rmdlv](https://github.com/rmdlv).\
-This project has a [MIT](https://github.com/timoniq/vkbottle/blob/main/LICENSE) license.
+This project has a [MIT](https://github.com/rmdlv/python-samp/blob/main/LICENSE) license.
