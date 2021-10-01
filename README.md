@@ -15,5 +15,5 @@ samp = SAMP()
 api = API(samp)
 
 username = api.getUsername()
-api.sendChat(username)
+api.sendChat(f"My name is {username}")
 ```
