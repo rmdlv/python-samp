@@ -1,8 +1,4 @@
-from python_samp import __version__, SAMP, API
-
-
-def test_version():
-    assert __version__ == "0.1.0"
+from python_samp import SAMP, API
 
 
 def test_username():
