@@ -14,6 +14,6 @@ from python_samp import SAMP, API
 samp = SAMP()
 api = API(samp)
 
-username = api.getUsername()
-api.sendChat(f"My name is {username}")
+username = api.get_username()
+api.send_chat(f"My name is {username}")
 ```
