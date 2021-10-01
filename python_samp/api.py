@@ -31,11 +31,22 @@ class API:
         self.samp.process.start_thread(self.samp.module + FUNC_SAMP_SENDCMD, address)
         self.samp.process.free(address)
 
-    def get_coordinates(self) -> tuple:
+    def get_coordinates(self) -> float:
         """
         Get local player coordinates
         """
         x = self.samp.process.read_float(ADDR_POSITION_X)
         y = self.samp.process.read_float(ADDR_POSITION_Y)
         z = self.samp.process.read_float(ADDR_POSITION_Z)
-        return (x, y, z)
+        return x, y, z
+
+    def set_coordinates(self, x: float, y: float, z: float) -> None:
+        """
+        Set local player coordninates
+        """
+        address = self.samp.process.read_int(
+            self.samp.process.read_int(ADDR_SET_POSITION) + ADDR_SET_POSITION_OFFSET
+        )
+        self.samp.process.write_float(address + ADDR_SET_POSITION_X_OFFSET, x)
+        self.samp.process.write_float(address + ADDR_SET_POSITION_X_OFFSET, y)
+        self.samp.process.write_float(address + ADDR_SET_POSITION_X_OFFSET, z)
