@@ -9,7 +9,7 @@ pip install -U https://github.com/rmdlv/python-samp/archive/refs/heads/main.zip
 
 ## Example
 ```python
-from python-samp import SAMP, API
+from python_samp import SAMP, API
 
 samp = SAMP()
 api = API(samp)
