@@ -8,5 +8,5 @@ def test_version():
 def test_username():
     samp = SAMP()
     api = API(samp)
-    data = api.getUsername()
-    assert data == "Python_Samp"
+    username = api.getUsername()
+    assert username == "Python_Samp"
