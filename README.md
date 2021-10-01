@@ -19,7 +19,7 @@ api.send_chat(f"My name is {username}")
 ```
 
 ## Contributing
-PR are supported! Before creating a pull request, read [CONTRIBUTION_GUIDE.md](CONTRIBUTION_GUIDE.md). We are pleased to see your contribution to the development of the library. Ask questions in the Issues section and in [**Telegram chat**](https://t.me/python_samp)!
+PR are supported! Before creating a pull request, read [CONTRIBUTION_GUIDE.md](https://github.com/rmdlv/python-samp/blob/main/CONTRIBUTING.md). We are pleased to see your contribution to the development of the library. Ask questions in the Issues section and in [**Telegram chat**](https://t.me/python_samp)!
 
 ## Лицензия
 Copyright © 2021 [rmdlv](https://github.com/rmdlv).\
