@@ -48,5 +48,5 @@ class API:
             self.samp.process.read_int(ADDR_SET_POSITION) + ADDR_SET_POSITION_OFFSET
         )
         self.samp.process.write_float(address + ADDR_SET_POSITION_X_OFFSET, x)
-        self.samp.process.write_float(address + ADDR_SET_POSITION_X_OFFSET, y)
-        self.samp.process.write_float(address + ADDR_SET_POSITION_X_OFFSET, z)
+        self.samp.process.write_float(address + ADDR_SET_POSITION_Y_OFFSET, y)
+        self.samp.process.write_float(address + ADDR_SET_POSITION_Z_OFFSET, z)
