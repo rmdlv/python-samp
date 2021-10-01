@@ -1,0 +1,1 @@
+Python library for interfacing with San Andreas Multiplayer using memory
