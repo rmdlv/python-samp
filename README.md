@@ -27,7 +27,7 @@ samp.close()
 from python_samp import SAMP, Misc
 
 samp = SAMP()
-mics = Misc(samp)
+misc = Misc(samp)
 
 misc.coordmaster(316.0837, -1376.215, 31.92003)
 samp.close()
