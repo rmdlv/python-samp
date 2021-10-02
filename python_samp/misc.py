@@ -7,7 +7,8 @@ from .memory_constants import (
     ADDR_HUD_MONEY,
 )
 
-from . import SAMP, API
+from .samp import SAMP
+from .api import API
 
 
 class Misc:
