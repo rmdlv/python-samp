@@ -1,6 +1,9 @@
 # python-samp
 >  Python library for interfacing with San Andreas Multiplayer using memory
 
+![GitHub repo size](https://img.shields.io/github/repo-size/rmdlv/python-samp?style=flat-square)
+![GitHub issues by-label](https://img.shields.io/github/issues/rmdlv/python-samp/bug?style=flat-square)
+
 ## Installation
 You can install the latest version with the command:
 ```shell
