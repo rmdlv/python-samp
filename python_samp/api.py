@@ -12,7 +12,7 @@ from .memory_constants import (
     ADDR_SET_POSITION_Z_OFFSET,
 )
 
-from .samp import SAMP
+from . import SAMP
 
 
 class API:
