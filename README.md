@@ -16,6 +16,7 @@ api = API(samp)
 
 username = api.get_username()
 api.send_chat(f"My name is {username}")
+samp.close()
 ```
 
 ## Contributing

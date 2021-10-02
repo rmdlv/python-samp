@@ -9,3 +9,6 @@ class SAMP:
         self.module = pymem.process.module_from_name(
             self.process.process_handle, "samp.dll"
         ).lpBaseOfDll
+
+    def close(self) -> None:
+        self.process.close_process()
