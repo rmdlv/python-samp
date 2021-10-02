@@ -60,7 +60,7 @@ class Misc:
         self, x: float, y: float, z: float, sections: int = 50, sleep: int = 0.25
     ) -> None:
         """
-        Sectional teleport to point
+        Sectional teleport to coordniates
         """
         _x, _y, _z = self.api.get_coordinates()
         dx = (x - _x) / sections
