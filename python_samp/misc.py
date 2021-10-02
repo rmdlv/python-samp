@@ -63,12 +63,12 @@ class Misc:
         Sectional teleport to coordniates
         """
         _x, _y, _z = self.api.get_coordinates()
-        dx = (x - _x) / sections
-        dy = (y - _y) / sections
-        dz = (z - _z) / sections
+        sx = (x - _x) / sections
+        sy = (y - _y) / sections
+        sz = (z - _z) / sections
         for _ in range(sections):
-            _x += dx
-            _y += dy
-            _y += dz
+            _x += sx
+            _y += sy
+            _y += sz
             self.api.set_coordinates(_x, _y, _z)
             time.sleep(sleep)
