@@ -24,7 +24,7 @@ samp.close()
 
 ## Low-level example
 ```python
-from python_samp import SAMP, API
+from python_samp import SAMP
 
 samp = SAMP()
 
