@@ -10,7 +10,7 @@ You can install the latest version with the command:
 pip install -U https://github.com/rmdlv/python-samp/archive/refs/heads/main.zip
 ```
 
-## Example
+## High-level example
 ```python
 from python_samp import SAMP, API
 
@@ -22,7 +22,22 @@ api.send_chat(f"My name is {username}")
 samp.close()
 ```
 
-## Using miscellaneous methods
+## Low-level example
+```python
+from python_samp import SAMP, API
+
+samp = SAMP()
+
+username = samp.process.read_string(samp.module + 0x219A6F)
+data = f"My name is {username}"
+address = samp.process.allocate(len(data))
+samp.process.write_string(address, data)
+samp.process.start_thread(samp.module + 0x57F0, address)
+samp.process.free(address)
+samp.close()
+```
+
+## Miscellaneous example
 ```python
 from python_samp import SAMP, Misc
 
