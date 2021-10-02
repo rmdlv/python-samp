@@ -1,8 +1,6 @@
 # python-samp
 >  Python library for interfacing with San Andreas Multiplayer using memory
 
-[![Documentation Status](https://readthedocs.org/projects/python-samp/badge/?version=latest)](https://python-samp.readthedocs.io/en/latest/?badge=latest)
-
 ## Installation
 You can install the latest version with the command:
 ```shell
