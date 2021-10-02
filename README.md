@@ -22,6 +22,17 @@ api.send_chat(f"My name is {username}")
 samp.close()
 ```
 
+## Using miscellaneous methods
+```python
+from python_samp import SAMP, Misc
+
+samp = SAMP()
+mics = Misc(samp)
+
+misc.coordmaster(316.0837, -1376.215, 31.92003)
+samp.close()
+```
+
 ## Contributing
 Pull requests are supported! Before creating a pull request, read [CONTRIBUTING.md](https://github.com/rmdlv/python-samp/blob/main/CONTRIBUTING.md). We are pleased to see your contribution to the development of the library. Ask questions in the Issues section and in [**Telegram chat**](https://t.me/python_samp)!
 
