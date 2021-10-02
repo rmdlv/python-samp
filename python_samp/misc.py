@@ -1,10 +1,15 @@
+import time
+
 from .memory import *
+
 from .samp import SAMP
+from .api import API
 
 
 class Misc:
     def __init__(self, samp: SAMP) -> None:
         self.samp = samp
+        self.api = API(self.samp)
 
     def get_jetpack(self) -> None:
         """
@@ -50,3 +55,20 @@ class Misc:
         """
         money = self.samp.process.read_int(ADDR_HUD_MONEY)
         return money
+
+    def coordmaster(
+        self, x: float, y: float, z: float, sections: int = 50, sleep: int = 0.25
+    ) -> None:
+        """
+        Sectional teleport to point
+        """
+        _x, _y, _z = self.api.get_coordinates()
+        dx = (x - _x) / sections
+        dy = (y - _y) / sections
+        dz = (z - _z) / sections
+        for _ in range(sections):
+            _x += dx
+            _y += dy
+            _y += dz
+            self.api.set_coordinates(_x, _y, _z)
+            time.sleep(sleep)
