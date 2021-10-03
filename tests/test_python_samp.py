@@ -5,8 +5,9 @@ api = API(samp)
 misc = Misc(samp)
 
 
-def test_get_username():
-    username = api.get_username()
+def test_get_local_scoreboard_data():
+    data = api.get_local_scoreboard_data()
+    username = data.name
     assert username == "Python_Samp"
 
 

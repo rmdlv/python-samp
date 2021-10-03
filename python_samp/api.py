@@ -1,5 +1,4 @@
 from .memory_constants import (
-    ADDR_SAMP_USERNAME,
     FUNC_SAMP_SENDSAY,
     FUNC_SAMP_SENDCMD,
     ADDR_POSITION_X,
@@ -10,18 +9,29 @@ from .memory_constants import (
     ADDR_SET_POSITION_X_OFFSET,
     ADDR_SET_POSITION_Y_OFFSET,
     ADDR_SET_POSITION_Z_OFFSET,
+    SAMP_INFO_OFFSET,
+    SAMP_PPOOLS_OFFSET,
+    SAMP_PPOOL_PLAYER_OFFSET,
+    SAMP_SLOCALPLAYERID_OFFSET,
+    SAMP_SZLOCALPLAYERNAME_OFFSET,
+    SAMP_ILOCALPLAYERSCORE_OFFSET,
+    SAMP_ILOCALPLAYERPING_OFFSET,
+    SAMP_PREMOTEPLAYER_OFFSET,
+    SAMP_SZPLAYERNAME_OFFSET,
+    SAMP_ISCORE_OFFSET,
+    SAMP_IPING_OFFSET,
+    SAMP_ISNPC_OFFSET,
 )
+from .samp_constants import SAMP_PLAYER_MAX
 
 from .samp import SAMP
+
+from .objects import Player
 
 
 class API:
     def __init__(self, samp: SAMP) -> None:
         self.samp = samp
-
-    def get_username(self) -> str:
-        username = self.samp.process.read_string(self.samp.module + ADDR_SAMP_USERNAME)
-        return username
 
     def send_chat(self, message: str) -> None:
         address = self.samp.process.allocate(len(message))
@@ -48,3 +58,33 @@ class API:
         self.samp.process.write_float(address + ADDR_SET_POSITION_X_OFFSET, x)
         self.samp.process.write_float(address + ADDR_SET_POSITION_Y_OFFSET, y)
         self.samp.process.write_float(address + ADDR_SET_POSITION_Z_OFFSET, z)
+
+    def get_local_scoreboard_data(self) -> Player:
+        players = self._get_player_pool()
+        id = self.samp.process.read_int(players + SAMP_SLOCALPLAYERID_OFFSET)
+        name = self.samp.process.read_string(players + SAMP_SZLOCALPLAYERNAME_OFFSET)
+        score = self.samp.process.read_int(players + SAMP_ILOCALPLAYERSCORE_OFFSET)
+        ping = self.samp.process.read_int(players + SAMP_ILOCALPLAYERPING_OFFSET)
+        return Player(id=id, name=name, score=score, ping=ping, npc=False)
+
+    def get_remote_scoreboard_data(self) -> Player:
+        data = []
+        players = self._get_player_pool()
+        for _id in range(SAMP_PLAYER_MAX):
+            player = self.samp.process.read_int(
+                players + SAMP_PREMOTEPLAYER_OFFSET + _id * 4
+            )
+            if not player:
+                continue
+            name = self.samp.process.read_string(player + SAMP_SZPLAYERNAME_OFFSET)
+            score = self.samp.process.read_int(player + SAMP_ISCORE_OFFSET)
+            ping = self.samp.process.read_int(player + SAMP_IPING_OFFSET)
+            npc = self.samp.process.read_bool(player + SAMP_ISNPC_OFFSET)
+            data.append(Player(id=_id, name=name, score=score, ping=ping, npc=npc))
+        return data
+
+    def _get_player_pool(self) -> int:
+        address = self.samp.process.read_int(self.samp.module + SAMP_INFO_OFFSET)
+        address = self.samp.process.read_int(address + SAMP_PPOOLS_OFFSET)
+        pool = self.samp.process.read_int(address + SAMP_PPOOL_PLAYER_OFFSET)
+        return pool

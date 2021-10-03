@@ -1,12 +1,13 @@
 [tool.poetry]
 name = "python-samp"
-version = "1.1"
+version = "1.2"
 description = "Python library for interfacing with San Andreas Multiplayer using memory"
 authors = ["Vladimir <60815271+rmdlv@users.noreply.github.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
 Pymem = "^1.8.5"
+pydantic = "^1.8.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
