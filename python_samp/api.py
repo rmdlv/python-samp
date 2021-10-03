@@ -70,9 +70,9 @@ class API:
     def get_remote_scoreboard_data(self) -> Player:
         data = []
         players = self._get_player_pool()
-        for _id in range(SAMP_PLAYER_MAX):
+        for id in range(SAMP_PLAYER_MAX):
             player = self.samp.process.read_int(
-                players + SAMP_PREMOTEPLAYER_OFFSET + _id * 4
+                players + SAMP_PREMOTEPLAYER_OFFSET + id * 4
             )
             if not player:
                 continue
@@ -80,7 +80,7 @@ class API:
             score = self.samp.process.read_int(player + SAMP_ISCORE_OFFSET)
             ping = self.samp.process.read_int(player + SAMP_IPING_OFFSET)
             npc = self.samp.process.read_bool(player + SAMP_ISNPC_OFFSET)
-            data.append(Player(id=_id, name=name, score=score, ping=ping, npc=npc))
+            data.append(Player(id=id, name=name, score=score, ping=ping, npc=npc))
         return data
 
     def _get_player_pool(self) -> int:
