@@ -6,9 +6,8 @@ misc = Misc(samp)
 
 
 def test_get_local_scoreboard_data():
-    data = api.get_local_scoreboard_data()
-    username = data.name
-    assert username == "Python_Samp"
+    scoreboard = api.get_local_scoreboard_data()
+    assert scoreboard.name == "Python_Samp"
 
 
 def test_get_jetpack():
