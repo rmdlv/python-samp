@@ -17,9 +17,8 @@ from python_samp import SAMP, API
 samp = SAMP()
 api = API(samp)
 
-data = api.get_local_scoreboard_data()
-username = data.name
-api.send_chat(f"My name is {username}")
+scoreboard = api.get_local_scoreboard_data()
+api.send_chat(f"My name is {scoreboard.name}")
 samp.close()
 ```
 
