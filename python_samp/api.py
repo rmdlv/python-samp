@@ -21,8 +21,11 @@ from .memory_constants import (
     SAMP_ISCORE_OFFSET,
     SAMP_IPING_OFFSET,
     SAMP_ISNPC_OFFSET,
+    SAMP_FIRST_CHAT_MESSAGE_OFFSET,
+    SAMP_CHAT_MESSAGE_SIZE,
+    ADDR_SAMP_CHATMSG_PTR,
 )
-from .samp_constants import SAMP_PLAYER_MAX
+from .samp_constants import SAMP_PLAYER_MAX, SAMP_MAX_CHAT_MESSAGES
 
 from .samp import SAMP
 
@@ -88,3 +91,13 @@ class API:
         address = self.samp.process.read_int(address + SAMP_PPOOLS_OFFSET)
         pool = self.samp.process.read_int(address + SAMP_PPOOL_PLAYER_OFFSET)
         return pool
+
+    def read_chat(self, line: int = 0) -> str:
+        address = self.samp.process.read_int(self.samp.module + ADDR_SAMP_CHATMSG_PTR)
+        text = self.samp.process.read_bytes(
+            address
+            + SAMP_FIRST_CHAT_MESSAGE_OFFSET
+            + (99 - line) * SAMP_CHAT_MESSAGE_SIZE,
+            SAMP_CHAT_MESSAGE_SIZE,
+        )
+        return text
