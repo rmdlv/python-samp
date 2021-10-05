@@ -92,7 +92,7 @@ class API:
         pool = self.samp.process.read_int(address + SAMP_PPOOL_PLAYER_OFFSET)
         return pool
 
-    def read_chat(self, line: int = 0) -> str:
+    def read_chat(self, line: int = 0) -> bytes:
         address = self.samp.process.read_int(self.samp.module + ADDR_SAMP_CHATMSG_PTR)
         text = self.samp.process.read_bytes(
             address
