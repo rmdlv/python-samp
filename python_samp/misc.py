@@ -40,7 +40,7 @@ class Misc:
         money = self.samp.process.read_int(ADDR_HUD_MONEY)
         return money
 
-    def coordmaster(
+    def coord_master(
         self, x: float, y: float, z: float, sections: int = 50, sleep: int = 0.25
     ) -> None:
         _x, _y, _z = self.api.get_coordinates()

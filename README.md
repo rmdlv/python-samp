@@ -44,7 +44,7 @@ from python_samp import SAMP, Misc
 samp = SAMP()
 misc = Misc(samp)
 
-misc.coordmaster(316.0837, -1376.215, 31.92003)
+misc.coord_master(316.0837, -1376.215, 31.92003)
 samp.close()
 ```
 
