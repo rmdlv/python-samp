@@ -37,6 +37,19 @@ samp.process.free(address)
 samp.close()
 ```
 
+## Events example
+```python
+from python_samp import SAMP, API, Events
+
+samp = SAMP()
+api = API(samp)
+events = Events()
+
+@events.listen(api.read_chat)
+def handler(data):
+    print(f'New chat message: {data}')
+```
+
 ## Miscellaneous example
 ```python
 from python_samp import SAMP, Misc

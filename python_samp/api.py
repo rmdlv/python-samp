@@ -36,15 +36,15 @@ class API:
     def __init__(self, samp: SAMP) -> None:
         self.samp = samp
 
-    def send_chat(self, message: str) -> None:
+    def send_chat(self, message: str, encoding: str = "utf8") -> None:
         address = self.samp.process.allocate(len(message))
-        self.samp.process.write_string(address, message)
+        self.samp.process.write_bytes(address, message.encode(encoding), len(message))
         self.samp.process.start_thread(self.samp.module + FUNC_SAMP_SENDSAY, address)
         self.samp.process.free(address)
 
-    def send_cmd(self, cmd: str) -> None:
+    def send_cmd(self, cmd: str, encoding: str = "utf8") -> None:
         address = self.samp.process.allocate(len(cmd))
-        self.samp.process.write_string(address, cmd)
+        self.samp.process.write_bytes(address, cmd.encode(encoding), len(cmd))
         self.samp.process.start_thread(self.samp.module + FUNC_SAMP_SENDCMD, address)
         self.samp.process.free(address)
 
@@ -92,7 +92,7 @@ class API:
         pool = self.samp.process.read_int(address + SAMP_PPOOL_PLAYER_OFFSET)
         return pool
 
-    def read_chat(self, line: int = 0) -> bytes:
+    def read_chat(self, line: int = 0, encoding: str = "utf8") -> str:
         address = self.samp.process.read_int(self.samp.module + ADDR_SAMP_CHATMSG_PTR)
         text = self.samp.process.read_bytes(
             address
@@ -100,4 +100,4 @@ class API:
             + (99 - line) * SAMP_CHAT_MESSAGE_SIZE,
             SAMP_CHAT_MESSAGE_SIZE,
         )
-        return text
+        return text.decode(encoding)
