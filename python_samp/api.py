@@ -97,7 +97,7 @@ class API:
         text = self.samp.process.read_bytes(
             address
             + SAMP_FIRST_CHAT_MESSAGE_OFFSET
-            + (99 - line) * SAMP_CHAT_MESSAGE_SIZE,
+            + (SAMP_MAX_CHAT_MESSAGES - line) * SAMP_CHAT_MESSAGE_SIZE,
             SAMP_CHAT_MESSAGE_SIZE,
         )
         return text.decode(encoding)
