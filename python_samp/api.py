@@ -100,4 +100,4 @@ class API:
             + (99 - line) * SAMP_CHAT_MESSAGE_SIZE,
             SAMP_CHAT_MESSAGE_SIZE,
         )
-        return text.decode(encoding)
+        return text.decode(encoding).splitlines()[0]
