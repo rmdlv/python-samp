@@ -24,6 +24,8 @@ from .memory_constants import (
     SAMP_FIRST_CHAT_MESSAGE_OFFSET,
     SAMP_CHAT_MESSAGE_SIZE,
     ADDR_SAMP_CHATMSG_PTR,
+    ADDR_GTA_KEYS,
+    ADDR_CAMERA_ROTATION,
 )
 from .samp_constants import SAMP_PLAYER_MAX, SAMP_MAX_CHAT_MESSAGES
 
@@ -101,3 +103,17 @@ class API:
             SAMP_CHAT_MESSAGE_SIZE,
         )
         return text.decode(encoding)
+
+    def get_key_state(self, key: int) -> int:
+        state = self.samp.process.read_int(ADDR_GTA_KEYS + key)
+        return state
+
+    def set_key_state(self, key: int, state: int) -> None:
+        self.samp.process.write_int(ADDR_GTA_KEYS + key, state)
+
+    def get_camera_rotation(self) -> float:
+        angle = self.samp.process.read_float(ADDR_CAMERA_ROTATION)
+        return angle
+
+    def set_camera_rotation(self, angle: float) -> None:
+        self.samp.process.write_float(ADDR_CAMERA_ROTATION, angle / 90)

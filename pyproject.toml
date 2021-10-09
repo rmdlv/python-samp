@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "python-samp"
-version = "1.3"
+version = "1.3.1"
 description = "Python library for interfacing with San Andreas Multiplayer using memory"
 authors = ["Vladimir <60815271+rmdlv@users.noreply.github.com>"]
 

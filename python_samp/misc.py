@@ -1,4 +1,5 @@
 import time
+import math
 
 from .memory_constants import (
     FUNC_CHEATS_JETPACK,
@@ -6,6 +7,7 @@ from .memory_constants import (
     ADDR_GAME_GRAVITY,
     ADDR_HUD_MONEY,
 )
+from .key_constants import KEY_W
 
 from .samp import SAMP
 from .api import API
@@ -53,3 +55,28 @@ class Misc:
             _y += sz
             self.api.set_coordinates(_x, _y, _z)
             time.sleep(sleep)
+
+    def walk_to_point(self, x: float, y: float, radius: int = 15):
+        _x, _y, _ = self.api.get_coordinates()
+        dx = _x - x
+        dy = _y - y
+        dist = math.sqrt(dx * dx + dy * dy)
+        while dist > radius:
+            _x, _y, _ = self.api.get_coordinates()
+            dx = _x - x
+            dy = _y - y
+            dist = math.sqrt(dx * dx + dy * dy)
+            dxa = abs(dx)
+            beta = math.degrees(math.acos(dxa / dist))
+            if dx > 0:
+                if dy < 0:
+                    angle = 270 + beta
+                else:
+                    angle = 270 - beta
+            else:
+                if dy < 0:
+                    angle = 90 - beta
+                else:
+                    angle = 90 + beta
+            self.api.set_camera_rotation(angle)
+            self.api.set_key_state(KEY_W, 255)
