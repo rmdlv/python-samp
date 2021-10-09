@@ -7,7 +7,7 @@ from .memory_constants import (
     ADDR_GAME_GRAVITY,
     ADDR_HUD_MONEY,
 )
-from .key_constants import KEY_W
+from .key_constants import KEY_A
 
 from .samp import SAMP
 from .api import API
@@ -79,4 +79,4 @@ class Misc:
                 else:
                     angle = 90 + beta
             self.api.set_camera_rotation(angle)
-            self.api.set_key_state(KEY_W, 255)
+            self.api.set_key_state(KEY_A, -255)
