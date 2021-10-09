@@ -56,7 +56,7 @@ class Misc:
             self.api.set_coordinates(_x, _y, _z)
             time.sleep(sleep)
 
-    def walk_to_point(self, x: float, y: float, radius: int = 15):
+    def walk_to_point(self, x: float, y: float, radius: int = 15) -> None:
         _x, _y, _ = self.api.get_coordinates()
         dx = _x - x
         dy = _y - y
