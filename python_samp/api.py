@@ -113,7 +113,7 @@ class API:
 
     def get_camera_rotation(self) -> float:
         angle = self.samp.process.read_float(ADDR_CAMERA_ROTATION)
-        return angle
+        return angle * 90
 
     def set_camera_rotation(self, angle: float) -> None:
         self.samp.process.write_float(ADDR_CAMERA_ROTATION, angle / 90)
