@@ -56,7 +56,7 @@ class API:
         x = self.samp.process.read_float(ADDR_POSITION_X)
         y = self.samp.process.read_float(ADDR_POSITION_Y)
         z = self.samp.process.read_float(ADDR_POSITION_Z)
-        return Coordinates(x, y, z)
+        return Coordinates(x=x, y=y, z=z)
 
     def set_coordinates(self, x: float, y: float, z: float) -> None:
         address = self.samp.process.read_int(
