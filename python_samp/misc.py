@@ -45,7 +45,8 @@ class Misc:
     def coord_master(
         self, x: float, y: float, z: float, sections: int = 50, sleep: int = 0.25
     ) -> None:
-        _x, _y, _z = self.api.get_coordinates()
+        coordinates = self.api.get_coordinates()
+        _x, _y, _z = coordinates.x, coordinates.y, coordinates.z
         sx = (x - _x) / sections
         sy = (y - _y) / sections
         sz = (z - _z) / sections
@@ -57,12 +58,14 @@ class Misc:
             time.sleep(sleep)
 
     def walk_to_point(self, x: float, y: float, radius: int = 15) -> None:
-        _x, _y, _ = self.api.get_coordinates()
+        coordinates = self.api.get_coordinates()
+        _x, _y = coordinates.x, coordinates.y
         dx = _x - x
         dy = _y - y
         dist = math.sqrt(dx * dx + dy * dy)
         while dist > radius:
-            _x, _y, _ = self.api.get_coordinates()
+            coordinates = self.api.get_coordinates()
+            _x, _y = coordinates.x, coordinates.y
             dx = _x - x
             dy = _y - y
             dist = math.sqrt(dx * dx + dy * dy)

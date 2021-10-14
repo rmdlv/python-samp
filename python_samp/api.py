@@ -31,7 +31,9 @@ from .samp_constants import SAMP_PLAYER_MAX, SAMP_MAX_CHAT_MESSAGES
 
 from .samp import SAMP
 
-from .objects import Player
+from .objects import Player, Coordinates
+
+from typing import List
 
 
 class API:
@@ -50,11 +52,11 @@ class API:
         self.samp.process.start_thread(self.samp.module + FUNC_SAMP_SENDCMD, address)
         self.samp.process.free(address)
 
-    def get_coordinates(self) -> float:
+    def get_coordinates(self) -> Coordinates:
         x = self.samp.process.read_float(ADDR_POSITION_X)
         y = self.samp.process.read_float(ADDR_POSITION_Y)
         z = self.samp.process.read_float(ADDR_POSITION_Z)
-        return x, y, z
+        return Coordinates(x, y, z)
 
     def set_coordinates(self, x: float, y: float, z: float) -> None:
         address = self.samp.process.read_int(
@@ -72,7 +74,7 @@ class API:
         ping = self.samp.process.read_int(players + SAMP_ILOCALPLAYERPING_OFFSET)
         return Player(id=id, name=name, score=score, ping=ping, npc=False)
 
-    def get_remote_scoreboard_data(self) -> Player:
+    def get_remote_scoreboard_data(self) -> List[Player]:
         data = []
         players = self._get_player_pool()
         for id in range(SAMP_PLAYER_MAX):

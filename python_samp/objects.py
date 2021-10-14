@@ -7,3 +7,9 @@ class Player(BaseModel):
     score: int
     ping: int
     npc: bool
+
+
+class Coordinates(BaseModel):
+    x: float
+    y: float
+    z: float
