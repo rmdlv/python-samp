@@ -7,7 +7,7 @@ from .memory_constants import (
     ADDR_GAME_GRAVITY,
     ADDR_HUD_MONEY,
 )
-from .key_constants import KEY_A
+from .key_constants import ( KEY_W, KEY_A )
 
 from .samp import SAMP
 from .api import API
@@ -83,3 +83,28 @@ class Misc:
                     angle = 90 + beta
             self.api.set_camera_rotation(angle)
             self.api.set_key_state(KEY_A, -255)
+
+    def walk_to_point_new(self, x: float, y: float, radius: int = 15) -> None:
+        coordinates = self.api.get_coordinates()
+        _x, _y = coordinates.x, coordinates.y
+        dx = x - _x
+        dy = y - _y
+        dist = math.sqrt(dx * dx + dy * dy)
+        a_b = dx*0 + dy*500
+        angle = math.acos(a_b / (500 * dist)) * 180 / math.pi
+        if dx < 0:
+            angle *= -1
+
+        while dist > radius:
+            self.api.set_camera_rotation(1.5 * angle)
+            self.api.set_key_state(KEY_W, 255)
+
+            coordinates = self.api.get_coordinates()
+            _x, _y = coordinates.x, coordinates.y
+            dx = x - _x
+            dy = y - _y
+            dist = math.sqrt(dx * dx + dy * dy)
+            a_b = dx*0 + dy*500
+            angle = math.acos(a_b / (500 * dist)) * 180 / math.pi
+            if dx < 0:
+                angle *= -1
